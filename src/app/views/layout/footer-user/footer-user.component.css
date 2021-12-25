@@ -1,0 +1,12 @@
+.accesos{
+    margin: 0.5rem;
+    /* background-color: fuchsia; */
+    border-radius: 100%;
+    padding: 0.5rem;
+}
+
+img:hover{
+    /* transform: scale(2); */
+    transform: scale(1.3,1.3);
+    /* border:1px solid wheat */
+}

@@ -1,0 +1,30 @@
+<div class="container">
+    
+    <table class="table table-striped table-hover tabla-usuario" >
+        <thead>
+            <tr>
+                <!-- <td></td> -->
+                <td colspan="2">Apellido</td>
+                <td>Nombre</td>
+                <td>Email</td>
+                <td>Estado</td>
+                <td>Editar</td>
+                <td>Borrar</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of content">
+                <td hidden>{{user.idusuario}}</td>
+                <td>{{user.apaterno}}</td>
+                <td>{{user.amaterno}}</td>
+                <td>{{user.nombre}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.estado}}</td>
+                <td><button (click)="ngEditUser(user.idusuario)" class="btn btn-success">E</button></td>
+                <td><button (click)="ngDeleteUser(user.idusuario)" class="btn btn-danger">B</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+    
+</div>

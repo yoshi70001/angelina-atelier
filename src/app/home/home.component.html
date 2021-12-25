@@ -1,0 +1,7 @@
+<div class="container">
+  <app-header></app-header>
+</div>
+<div class="container-md">
+  <button *ngIf="showBack" (click)="volver()" class="btn btn-primary" style="margin: 1.5rem;display: block;margin-left: auto;margin-right: auto;">Volver</button>
+  <router-outlet></router-outlet>
+</div>
