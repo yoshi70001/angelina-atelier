@@ -1,0 +1,31 @@
+<div class="container">
+    
+    <table class="table table-striped table-hover tabla-usuario" >
+        <thead>
+            <tr>
+                <td>Titular</td>
+                <td>Reseña</td>
+                <td>Contenido</td>
+                <td>Estado</td>
+                <td>Fecha</td>
+                <td>Imagen</td>
+                <td colspan="2">Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let noticia of content">
+                <td hidden>{{noticia.idnoticia}}</td>
+                <td>{{noticia.titular}}</td>
+                <td>{{noticia.resena}}</td>
+                <td>{{noticia.contenido}}</td>
+                <td>{{noticia.estado=="Activo"?"Visible":"No visible"}}</td>
+                <td>{{noticia.fecha}}</td>
+                <td><img src="{{noticia.imagen}}" width="120" height="120"></td>
+                <td><button (click)="ngEditNoticia(noticia.idnoticia)" class="btn btn-success">E</button></td>
+                <td><button (click)="ngDeleteNoticia(noticia.idnoticia)" class="btn btn-danger">B</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+    
+</div>

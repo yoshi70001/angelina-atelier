@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   private roles: Object[] = [];
   isLoggedIn = false;
   showAdminBoard = false;
-  showModeratorBoard = false;
+  showNewsBoard = false;
   showHeader=true;
   ruteLogin=false;
   username?: string;
@@ -27,8 +27,8 @@ export class AppComponent implements OnInit {
       
       // this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
       this.showAdminBoard = true;
-      // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
-      this.showModeratorBoard = true;
+      // this.showNewsBoard = this.roles.includes('ROLE_NEWS');
+      this.showNewsBoard = true;
 
       this.username = user.data.user.usuario;
     }
