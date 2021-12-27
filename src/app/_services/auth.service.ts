@@ -22,11 +22,24 @@ export class AuthService {
     }, httpOptions);
   }
 
-  register(username: string, email: string, password: string): Observable<any> {
-    return this.http.post(AUTH_API + 'signup', {
-      username,
-      email,
-      password
+  register( usuario:any): Observable<any> {
+    return this.http.post(AUTH_API + 'usuario/register', {
+      nombre:usuario.nombre,
+      apaterno:usuario.apaterno,
+      amaterno:usuario.amaterno,
+      dni:usuario.dni,
+      email:usuario.email,
+      telefono:usuario.telefono,
+      usuario:usuario.usuario,
+      contrasena:usuario.contrasena,
+      idestado:usuario.idestado,
+      privilegios:usuario.privilegio
+
     }, httpOptions);
+  }
+  update(id:number,usuario:any):Observable<any>{
+    return this.http.put(AUTH_API+'usuario/edit/'+id,usuario
+
+    ,httpOptions)
   }
 }

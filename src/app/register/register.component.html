@@ -96,7 +96,8 @@
       <label for="inputEmail4" class="form-label">Nombres</label>
       <input type="text" class="form-control" id="nombre" [(ngModel)]="form.nombre" #nombre="ngModel" name="nombre">
     </div>
-    <div class="col-md-6" *ngIf="status=='Registrar'?true:false">
+    <!-- <div class="col-md-6" *ngIf="status=='Registrar'?true:false"> -->
+      <div class="col-md-6" >
       <label for="inputEmail4" class="form-label">DNI</label>
       <input type="number" class="form-control" id="dni" [(ngModel)]="form.dni" #dni="ngModel" name="dni">
     </div>
