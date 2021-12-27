@@ -22,6 +22,7 @@ export class RegisterNewComponent implements OnInit {
   isSignUpFailed = false;
   errorMessage = '';
   estados: any;
+  idNoticia: any;
 
   constructor(private authService: AuthService, private noticiasService: NoticiasService, private route: ActivatedRoute) { }
 
@@ -36,7 +37,7 @@ export class RegisterNewComponent implements OnInit {
         this.form.titular = datosNoticia.titular;
         this.form.resena= datosNoticia.resena;
         this.form.contenido= datosNoticia.contenido;
-
+        this.form.idestado= datosNoticia.idestado;
         this.form.imagen= datosNoticia.imagen;
         // this.form.active= datosUsuario.estado=="Activo"?true:false;
         console.log(this.active_buttons)
@@ -59,22 +60,47 @@ export class RegisterNewComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.form.contrasena.trim()!=null&&this.form.contrasena.trim()!=""){
-      console.log(this.form.contrasena)
-      this.form.contrasena = CryptoJS.MD5(this.form.contrasena.trim())
+    console.log("formulario",this.form);
+
+    if (!this.idNoticia) {
+      this.authService.registerNew({
+        titular: this.form.titular,
+        resena: this.form.resena,
+        contenido: this.form.contenido,
+        idestado: this.form.idestado,
+        imagen: this.form.imagen
+
+      }).subscribe(
+        data => {
+
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
+    } else {
+      this.authService.updateNew(
+        this.idNoticia, {
+          titular: this.form.titular,
+          resena: this.form.resena,
+          contenido: this.form.contenido,
+          idestado: this.form.idestado,
+          imagen: this.form.imagen
+      }
+      ).subscribe(
+        data => {
+          
+          this.isSuccessful = true;
+          this.isSignUpFailed = false;
+        },
+        err => {
+          this.errorMessage = err.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
     }
-    
-    console.log(this.form)
-    // this.authService.register(username, email, password).subscribe(
-    //   data => {
-    //     console.log(data);
-    //     this.isSuccessful = true;
-    //     this.isSignUpFailed = false;
-    //   },
-    //   err => {
-    //     this.errorMessage = err.error.message;
-    //     this.isSignUpFailed = true;
-    //   }
-    // );
   }
 }

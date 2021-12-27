@@ -17,7 +17,7 @@
       <label for="inputEmail4" class="form-label">Estado</label>
       <select name="estado" class="form-control">
         <option value="">Seleccione una opción</option>
-          <option *ngFor="let estado of estados" value="{{estado.idestado}}">
+          <option *ngFor="let estado of estados" value="{{estado.idestado}}" [selected]="estado.idestado === form.idestado">
             {{estado.nombre=="Activo"?"Visible":"No visible"}}
           </option>
       </select>

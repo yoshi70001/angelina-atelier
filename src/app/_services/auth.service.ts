@@ -42,4 +42,19 @@ export class AuthService {
 
     ,httpOptions)
   }
+
+  registerNew( noticia:any): Observable<any> {
+    return this.http.post(AUTH_API + 'usuario/register', {
+      titular:noticia.titular,
+      resena:noticia.resena,
+      contenido:noticia.contenido,
+      idestado:noticia.idestado,
+      imagen:noticia.imagen
+
+    }, httpOptions);
+  }
+  updateNew(id:number,noticia:any):Observable<any>{
+    return this.http.put(AUTH_API+'noticia/edit/'+id,noticia,httpOptions)
+  }
+
 }
