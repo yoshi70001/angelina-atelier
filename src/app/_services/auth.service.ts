@@ -43,8 +43,8 @@ export class AuthService {
     ,httpOptions)
   }
 
-  registerNew( noticia:any): Observable<any> {
-    return this.http.post(AUTH_API + 'usuario/register', {
+  registerNew(noticia:any): Observable<any> {
+    return this.http.post(AUTH_API + 'noticia/register', {
       titular:noticia.titular,
       resena:noticia.resena,
       contenido:noticia.contenido,
@@ -55,6 +55,11 @@ export class AuthService {
   }
   updateNew(id:number,noticia:any):Observable<any>{
     return this.http.put(AUTH_API+'noticia/edit/'+id,noticia,httpOptions)
+  }
+
+  deleteNew(id:number):Observable<any>{
+    alert("ASD"+id);
+    return this.http.put(AUTH_API+'noticia/delete/'+id,httpOptions)
   }
 
 }

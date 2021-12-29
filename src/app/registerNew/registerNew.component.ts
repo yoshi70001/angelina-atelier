@@ -16,7 +16,6 @@ export class RegisterNewComponent implements OnInit {
     estado: "",
     imagen: ""
   };
-  active_buttons:{[index: string]:any}={};
   status: string = "Registrar";
   isSuccessful = false;
   isSignUpFailed = false;
@@ -27,10 +26,10 @@ export class RegisterNewComponent implements OnInit {
   constructor(private authService: AuthService, private noticiasService: NoticiasService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let idNoticia = this.route.snapshot.paramMap.get("id");
-    if (idNoticia) {
+    this.idNoticia = this.route.snapshot.paramMap.get("id");
+    if (this.idNoticia) {
       this.status = "Modificar"
-      this.noticiasService.getDataNewId(parseInt(idNoticia)).subscribe(data => {
+      this.noticiasService.getDataNewId(parseInt(this.idNoticia)).subscribe(data => {
 
         let datosNoticia = JSON.parse(data).data.new;
         console.log(datosNoticia);
@@ -40,7 +39,6 @@ export class RegisterNewComponent implements OnInit {
         this.form.idestado= datosNoticia.idestado;
         this.form.imagen= datosNoticia.imagen;
         // this.form.active= datosUsuario.estado=="Activo"?true:false;
-        console.log(this.active_buttons)
       },
         err => {
           alert("Error en la consulta " + err)
@@ -50,7 +48,6 @@ export class RegisterNewComponent implements OnInit {
     this.noticiasService.getStates().subscribe(data => {
 
       this.estados = JSON.parse(data).data.statesnew;
-      console.log(this.estados);
 
     },
     err => {
@@ -60,14 +57,13 @@ export class RegisterNewComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log("formulario",this.form);
 
     if (!this.idNoticia) {
       this.authService.registerNew({
         titular: this.form.titular,
         resena: this.form.resena,
         contenido: this.form.contenido,
-        idestado: this.form.idestado,
+        idestado: this.form.estado,
         imagen: this.form.imagen
 
       }).subscribe(
@@ -87,7 +83,7 @@ export class RegisterNewComponent implements OnInit {
           titular: this.form.titular,
           resena: this.form.resena,
           contenido: this.form.contenido,
-          idestado: this.form.idestado,
+          idestado: this.form.estado,
           imagen: this.form.imagen
       }
       ).subscribe(

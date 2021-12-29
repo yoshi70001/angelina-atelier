@@ -79,6 +79,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
+    
     if (this.form.contrasena.toString().trim() != null && this.form.contrasena.toString().trim() != "") {
 
       this.form.contrasena = CryptoJS.MD5(this.form.contrasena.toString().trim()).toString();

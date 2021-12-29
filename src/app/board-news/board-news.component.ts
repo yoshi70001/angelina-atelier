@@ -38,7 +38,8 @@ export class BoardNewsComponent implements OnInit {
     
     let deleteB= confirm("¿Esta seguro que desea eliminar la noticia?");
     if(deleteB){
-      console.log("has eliminado "+idnoticia)
+      this.router.navigate(['/admin/deleteNew', idnoticia]);
+      console.log("Has eliminado "+idnoticia)
     }
   }
 

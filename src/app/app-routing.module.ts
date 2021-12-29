@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'user', component: BoardUserComponent },
       { path: 'register/:id', component: RegisterComponent },
       { path: 'registerNew/:id', component: RegisterNewComponent },
-      { path: 'mod', component: BoardNewsComponent },
+      { path: 'deleteNew/:id', component: BoardNewsComponent },
       { path: 'home', component: BoardAdminComponent },
       { path: 'news', component: BoardNewsComponent },
       { path: '**', component: NotFoundComponent },

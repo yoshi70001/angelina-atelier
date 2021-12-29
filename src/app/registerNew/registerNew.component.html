@@ -2,20 +2,20 @@
 <div class="container">
   <form class="row g-3">
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Titular</label>
-      <input type="text" class="form-control" id="titular" [(ngModel)]="form.titular" #apaterno="ngModel" name="titular">
+      <label for="titular" class="form-label">Titular</label>
+      <input type="text" class="form-control" id="titular" [(ngModel)]="form.titular" #titular="ngModel" name="titular">
     </div>
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Reseña</label>
-      <input type="text" class="form-control" id="resena" [(ngModel)]="form.resena" #amaterno="ngModel" name="resena">
+      <label for="resena" class="form-label">Reseña</label>
+      <input type="text" class="form-control" id="resena" [(ngModel)]="form.resena" #resena="ngModel" name="resena">
     </div>
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Contenido</label>
-      <textarea type="text" class="form-control" id="contenido" [(ngModel)]="form.contenido" #nombre="ngModel" name="contenido"></textarea>
+      <label for="contenido" class="form-label">Contenido</label>
+      <textarea type="text" class="form-control" id="contenido" [(ngModel)]="form.contenido" #contenido="ngModel" name="contenido"></textarea>
     </div>
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Estado</label>
-      <select name="estado" class="form-control">
+      <label for="estado" class="form-label">Estado</label>
+      <select name="estado" class="form-control" [(ngModel)]="form.estado" #estado="ngModel">
         <option value="">Seleccione una opción</option>
           <option *ngFor="let estado of estados" value="{{estado.idestado}}" [selected]="estado.idestado === form.idestado">
             {{estado.nombre=="Activo"?"Visible":"No visible"}}
@@ -23,10 +23,10 @@
       </select>
     </div>
     <div class="col-md-6">
-      <label class="col-md-4 control-label">Imagen(*)</label> 
+      <label for="imagen" class="col-md-4 control-label">Imagen(*)</label> 
       <button name="btnimagen" class="form-control" id="btn-image" value="">Subir imagen</button>
       <img src="{{form.imagen==''?'https://res.cloudinary.com/majayesh/image/upload/v1640621390/img/subir_imagen_gdwgbc.png':form.imagen}}" alt="" id="image" width="525" id="btn-image">
-      <input name="imagen" id="imagen" class="form-control" type="text" readonly>
+      <input name="imagen" id="imagen" class="form-control" type="text" [(ngModel)]="form.imagen" #imagen="ngModel" readonly>
     </div>
     
     
@@ -39,25 +39,3 @@
   </form>
 </div>
 
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    'use strict';
-    const boton_foto = document.querySelector('#btn-image');
-    const boton_prueba = document.querySelector('#btn-prueba');
-    const imagen = document.querySelector('#image');
-    let widget_cloudinary = cloudinary.createUploadWidget({
-        cloudName: 'majayesh',
-        uploadPreset: 'x65hztpr'
-    }, (err, result) => {
-        if (!err && result && result.event === 'success') {
-            console.log('Imagen subida con éxito a cloudinary.', result.info);
-            imagen.src = result.info.secure_url;
-            $("#imagen").val(imagen.src);
-            $("#contact_form").data('bootstrapValidator').resetForm();
-        }
-    });
-    boton_foto.addEventListener('click', () => {
-        widget_cloudinary.open();
-    }, false);
-</script>
